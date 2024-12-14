@@ -1,0 +1,29 @@
+services:
+  server:
+    image: aniket-server
+    container_name: aniket-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    env_file:
+      - path: ./.env
+        required: true
+    ports:
+      - "3030:3030"
+    networks:
+      - aniket-network
+
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+        - path: .
+          target: /app
+          action: sync
+
+networks:
+  aniket-network:
+    driver: bridge

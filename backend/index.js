@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./database/connectDB.js";
 
 dotenv.config();
+
 const app = express();
 
 app.get("/", (req, res) => {

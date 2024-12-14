@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-console.log("MONGO_PASS from env:", process.env);
-
-const mguri = `mongodb+srv://aniketsaha1809:${process.env.MONGO_PASS}@authdb.ycxdx.mongodb.net/?retryWrites=true&w=majority`;
+const mguri = `mongodb+srv://aniketsaha1809:${process.env.PASSWORD}@authdb.ycxdx.mongodb.net/?retryWrites=true&w=majority`;
 
 export const connectDB = async () => {
   try {
