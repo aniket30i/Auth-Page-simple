@@ -1,5 +1,8 @@
 import express from "express";
+import dotenv from "dotenv";
+import { connectDB } from "./database/connectDB.js";
 
+dotenv.config();
 const app = express();
 
 app.get("/", (req, res) => {
@@ -7,9 +10,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3000, () => {
+  connectDB();
   console.log("Server is running on port 3000");
 });
-
-//P9VxZSA8uV1jliVo
-
-//mongodb+srv://aniketsaha1809:P9VxZSA8uV1jliVo@authcluster.ul67c.mongodb.net/?retryWrites=true&w=majority&appName=authCluster
