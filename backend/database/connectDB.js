@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mguri = `mongodb+srv://aniketsaha1809:${process.env.PASSWORD}@authdb.ycxdx.mongodb.net/?retryWrites=true&w=majority`;
+const mguri = `mongodb+srv://aniketsaha1809:${process.env.PASSWORD}@authdb.ycxdx.mongodb.net/auth_DB?retryWrites=true&w=majority`;
 
 export const connectDB = async () => {
   try {
