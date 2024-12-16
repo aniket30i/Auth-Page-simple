@@ -7,9 +7,7 @@ dotenv.config();
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use(express.json()); // allows to parse incoming requests : req.body data format json
 
 app.use("/api/auth", authRoutes);
 
