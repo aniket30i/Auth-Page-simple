@@ -11,7 +11,11 @@ app.use(express.json()); // allows to parse incoming requests : req.body data fo
 
 app.use("/api/auth", authRoutes);
 
-app.listen(3000, () => {
+app.get("/", (req, res) => {
+  res.send("Welcome to the server!");
+});
+
+app.listen(3500, () => {
   connectDB();
-  console.log("Server is running on port 3000");
+  console.log("Server is running on port 3500");
 });

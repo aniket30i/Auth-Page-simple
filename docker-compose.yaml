@@ -10,7 +10,7 @@ services:
       - path: ./.env
         required: true
     ports:
-      - "3000:3000"
+      - "3500:3500"
     networks:
       - aniket-network
 

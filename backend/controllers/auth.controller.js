@@ -30,6 +30,9 @@ export const signup = async (req, res) => {
     //jwt
 
     generateTokenAndSetCookie(res, user._id);
+
+    sendVerficationEmail(user.email, verificationToken);
+
     res.status(201).json({
       success: true,
       message: "user created successfully",
@@ -46,11 +49,6 @@ export const signup = async (req, res) => {
 /////////////////
 ///////////////////////
 //////////////////
-///////////////////////
-////////////////////
-/////////////////
-//////////////////
-//////////////
 
 export const login = async (req, res) => {
   res.send("login route");

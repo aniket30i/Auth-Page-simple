@@ -7,4 +7,8 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);
 
+router.get("/test", (req, res) => {
+  res.send("Test route works!");
+});
+
 export default router;
