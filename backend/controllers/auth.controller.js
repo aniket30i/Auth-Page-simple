@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
+import { sendVerficationEmail } from "../mailtrap/emails.js";
 export const signup = async (req, res) => {
   const { email, password, name } = req.body;
   try {
@@ -29,9 +30,11 @@ export const signup = async (req, res) => {
 
     //jwt
 
+    console.log("generating and setting cookie");
     generateTokenAndSetCookie(res, user._id);
-
-    sendVerficationEmail(user.email, verificationToken);
+    console.log("sending verification email");
+    await sendVerficationEmail(user.email, verificationToken);
+    console.log("sent");
 
     res.status(201).json({
       success: true,
@@ -50,6 +53,33 @@ export const signup = async (req, res) => {
 ///////////////////////
 //////////////////
 
+export const verifyEmail = async (req, res) => {
+  const {code}= req.body;
+
+  try{
+    const user = await User.findOne(
+      {verificationToken: code,
+      verificationExpiresAt: {$gt: Date.now()}
+    });
+
+    if(!user){
+      return res.status(400).json({
+        success: false,
+        message: "Invalid/expired verification code",
+      })
+
+      user.isVerified = true;
+      user.verificationToken=undefined;
+      user.verificationExpiresAt=undefined;
+      await user.save();
+
+      await sendWelcomeEmail(user.email, user.name);
+  }
+}
+catch(err)
+{
+
+}
 export const login = async (req, res) => {
   res.send("login route");
 };

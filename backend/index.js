@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the server!");
 });
 
-app.listen(3500, () => {
+app.listen(3000, () => {
   connectDB();
   console.log("Server is running on port 3500");
 });
